@@ -1,7 +1,11 @@
 # README
 
+### AWS EKS
+
 ```sh
 aws eks update-kubeconfig --region ap-southeast-1 --name mycluster
+
+kubectl get nodes
 ```
 
 ### Artifactory OSS
@@ -49,4 +53,34 @@ helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube \
     --set postgresql.containerSecurityContext.enabled=false \
     --set edition=developer,monitoringPasscode="P@ssw0rd123" \
     --version 2025.1.0
+```
+
+### Gitlab
+
+- intsall cert-manager operator
+- install gitlab operator
+
+```yaml
+apiVersion: apps.gitlab.com/v1beta1
+kind: GitLab
+metadata:
+  name: gitlab
+  namespace: gitlab-system
+spec:
+  chart:
+    version: 8.9.0
+    values:
+      nginx-ingress:
+        enabled: false
+      certmanager:
+        install: true
+      certmanager-issuer:
+        email: your_email@gmail.com
+      global:
+        hosts:
+          domain: <your_domain>
+        ingress:
+          class: none
+          annotations:
+            route.openshift.io/termination: 'edge'
 ```

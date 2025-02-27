@@ -101,5 +101,9 @@ resource "helm_release" "aws_load_balancer_controller" {
     value = module.lb_controller_role.iam_role_arn
   }
 
-  depends_on = [module.eks]
+  depends_on = [module.eks, module.lb_controller_role]
+
+  lifecycle {
+    ignore_changes = all
+  }
 }

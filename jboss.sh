@@ -3,7 +3,7 @@ sudo hostnamectl set-hostname jboss
 sleep 5s
 sudo yum install java-11-openjdk-devel unzip -y
 sleep 5s
-curl -O https://download1507.mediafire.com/bv98euxf3lag0HTx9lYgf5JlZ3u_Bn--2YRbb8uE7UXETXKLwpedrmhf25csCf8HgLVt9S201DibJ3OdvoOB0Ba5HjGLJLNQWRVetktJxyQSE_2PFKtvDofNeKSf_WvWRo_h58atzk3AdI0VDO6h7u4OIpx0yQ9xBYYN_fUPPY4L/oq90v78d8u30w2u/jboss-eap-8.0.0.zip
+curl -sLO "https://download1507.mediafire.com/v95756ohydcgAr_HfhdszGTaoDSSVG2ZViJNxzF0Tt1nq3uRdIDE7S2RwZKHy9jViWuqvaI7ezeTQY3d6IuZjz-FE-YD-MsxYh9vAgzYdgWJJXuEXrHsKCRUYlis8Zx0nG5A_GVcmHc6BGHDBm08A8nHmL3g3DG1kQal8LX7iYHq/oq90v78d8u30w2u/jboss-eap-8.0.0.zip"
 sleep 5s
 unzip jboss-eap-8.0.0.zip
 sleep 5s

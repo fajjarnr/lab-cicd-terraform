@@ -30,7 +30,7 @@ helm repo add jfrog https://charts.jfrog.io
 
 helm repo update
 
-helm upgrade --install jfrog-container-registry frog/artifactory-jcr \
+helm upgrade --install jfrog-container-registry jfrog/artifactory-jcr \
     --version 107.98.10 \
     --namespace jcr \
     --create-namespace
@@ -45,14 +45,14 @@ helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
 
 helm repo update
 
-oc create namespace sonarqube
-
 helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube \
     --set OpenShift.enabled=true \
     --set postgresql.securityContext.enabled=false \
     --set postgresql.containerSecurityContext.enabled=false \
     --set edition=developer,monitoringPasscode="P@ssw0rd123" \
-    --version 2025.1.0
+    --version 2025.1.0 \
+    --namespace sonarqube \
+    --create-namespace
 ```
 
 ### Gitlab
@@ -68,19 +68,48 @@ metadata:
   namespace: gitlab-system
 spec:
   chart:
-    version: 8.9.0
     values:
-      nginx-ingress:
-        enabled: false
       certmanager:
         install: true
       certmanager-issuer:
-        email: your_email@gmail.com
+        email: <your_email>@gmail.com
+      gitlab:
+        gitlab-shell:
+          maxReplicas: 2
+          minReplicas: 1
+        sidekiq:
+          maxReplicas: 2
+          minReplicas: 1
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1000M
+        webservice:
+          maxReplicas: 2
+          minReplicas: 1
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1500M
       global:
         hosts:
           domain: <your_domain>
         ingress:
-          class: none
           annotations:
-            route.openshift.io/termination: 'edge'
+            route.openshift.io/termination: edge
+          class: none
+      minio:
+        resources:
+          requests:
+            cpu: 100m
+      nginx-ingress:
+        enabled: false
+      postgresql:
+        primary:
+          extendedConfiguration: max_connections = 200
+      redis:
+        resources:
+          requests:
+            cpu: 100m
+    version: 8.9.2
 ```

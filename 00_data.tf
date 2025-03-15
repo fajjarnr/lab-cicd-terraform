@@ -40,6 +40,6 @@ locals {
 data "aws_route53_zones" "all" {}
 
 data "aws_route53_zone" "selected" {
-  name         = "sandbox2414.opentlc.com"
+  name         = "sandbox356.opentlc.com"
   private_zone = false
 }

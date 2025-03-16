@@ -113,3 +113,36 @@ spec:
             cpu: 100m
     version: 8.9.2
 ```
+
+---
+
+### Deploy Jboss
+
+```sh
+curl --location 'http://jboss.domain.com:9990/management' \
+--digest -L --user admin:<PASSWORD> \
+--header 'Content-Type: application/json' \
+--data '{
+    "operation": "composite",
+    "address": [],
+    "steps": [
+        {
+            "operation": "add",
+            "address": {
+                "deployment": "helloworld.war"
+            },
+            "content": [
+                {
+                    "url": "https://artifactory.domain.com/artifactory/helloworld-libs-release-local/org/jboss/eap/quickstarts/helloworld/8.0.0.GA/helloworld-8.0.0.GA.war"
+                }
+            ]
+        },
+        {
+            "operation": "deploy",
+            "address": {
+                "deployment": "helloworld.war"
+            }
+        }
+    ]
+}'
+```

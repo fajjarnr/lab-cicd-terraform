@@ -5,7 +5,7 @@ locals {
               sleep 5s
               sudo yum install java-11-openjdk-devel unzip -y
               sleep 5s
-              curl -sLO "https://download1507.mediafire.com/v95756ohydcgAr_HfhdszGTaoDSSVG2ZViJNxzF0Tt1nq3uRdIDE7S2RwZKHy9jViWuqvaI7ezeTQY3d6IuZjz-FE-YD-MsxYh9vAgzYdgWJJXuEXrHsKCRUYlis8Zx0nG5A_GVcmHc6BGHDBm08A8nHmL3g3DG1kQal8LX7iYHq/oq90v78d8u30w2u/jboss-eap-8.0.0.zip"
+              curl -sLO "https://download1507.mediafire.com/n99h12gtygcgQA7drEErnkHN4FRgymaulyQ67aC8jGARZ8uj1TR5geVzkVsCnp_iBpgQjskqocGTM9N29HwkKLCTwZkTW815CIJmMntTjyiazQPsPGexcOzhsT1xyWAOlpbHjW3rIyTzVAuvJjjRd7_1rNPdivpHpFWqMDzXOU4Emw/oq90v78d8u30w2u/jboss-eap-8.0.0.zip"
               sleep 5s
               unzip jboss-eap-8.0.0.zip
               mv jboss-eap-8.0 jboss

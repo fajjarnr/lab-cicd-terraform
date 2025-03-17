@@ -1,5 +1,14 @@
 # README
 
+### Terraform
+
+```hcl
+terraform init
+terraform apply -auto-approve
+terraform init -auto-approve -migrate-state
+terraform apply -auto-approve -lock=false
+```
+
 ### AWS EKS
 
 ```sh

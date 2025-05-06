@@ -4,26 +4,26 @@ locals {
               sudo hostnamectl set-hostname ubuntu
               sudo apt update
               sudo apt upgrade -y
-              sudo apt install podman skopeo pipx unzip -y
+              sudo apt install podman skopeo buildah pipx unzip -y
               sudo apt install pipx podman-compose -y
-              
+
               # ocp client
-              curl -sLO "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux-4.18.1.tar.gz"
-              tar xvf openshift-client-linux-4.18.1.tar.gz
+              curl -sLO "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux-4.18.7.tar.gz"
+              tar xvf openshift-client-linux-4.18.7.tar.gz
               sudo mv oc kubectl /usr/local/bin/
-              
+
               # helm
               curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-              
+
               # aws_cli
               curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
               unzip awscliv2.zip
               sudo ./aws/install
-              
+
               # podman_conf
               REGISTRIES_CONF="/etc/containers/registries.conf"
               echo 'unqualified-search-registries = ["docker.io", "quay.io", "registry.redhat.io", "registry.access.redhat.com"]' | sudo tee -a $REGISTRIES_CONF
-              
+
               # eksctl
               ARCH=amd64
               PLATFORM=$(uname -s)_$ARCH

@@ -5,7 +5,7 @@
 ```hcl
 terraform init
 terraform apply -auto-approve
-terraform init -auto-approve -migrate-state
+terraform init -migrate-state
 terraform apply -auto-approve -lock=false
 ```
 
@@ -20,7 +20,7 @@ kubectl get nodes
 ### Artifactory OSS
 
 ```sh
-helm repo add jfrog https://charts.jfrog.io
+helm repo add jfrog https://charts.wjfrog.io
 
 helm repo update
 
@@ -58,8 +58,7 @@ helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube \
     --set OpenShift.enabled=true \
     --set postgresql.securityContext.enabled=false \
     --set postgresql.containerSecurityContext.enabled=false \
-    --set edition=developer,monitoringPasscode="P@ssw0rd123" \
-    --version 2025.1.0 \
+    --set community.enabled=true,monitoringPasscode="P@ssw0rd123" \
     --namespace sonarqube \
     --create-namespace
 ```
@@ -77,6 +76,7 @@ metadata:
   namespace: gitlab-system
 spec:
   chart:
+    version: 8.10.1
     values:
       certmanager:
         install: true
@@ -120,7 +120,6 @@ spec:
         resources:
           requests:
             cpu: 100m
-    version: 8.9.2
 ```
 
 ---
